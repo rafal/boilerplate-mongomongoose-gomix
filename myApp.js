@@ -14,8 +14,11 @@ const Person = mongoose.model('Person', personSchema);
 
 
 const createAndSavePerson = (done) => {
-  if (error) return done(error);
-  done(null, result);
+  const person = new Person({name: "John Doe", age: 69, favoriteFoods: ["Cocoa", "Milk"] })
+  person.save((error, data) => {
+    if (error) return console.error(error)
+    done(null, data);
+  })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
